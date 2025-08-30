@@ -3,19 +3,16 @@ import { Link, Outlet } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 function Layout() {
-  // ดึงรายการสินค้าใน cart จาก Redux
   const cartItems = useSelector((state) => state.cart.items);
-
-  // รวมจำนวนสินค้า
   const totalQuantity = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
     <div className="min-h-screen flex flex-col">
-      {/* Navbar */}
-      <nav className="bg-indigo-600 text-white p-4 shadow">
+      {/* Navbar fixed */}
+      <nav className="bg-indigo-600 text-white p-4 shadow fixed top-0 left-0 w-full z-50">
         <div className="container mx-auto flex justify-between items-center">
           <h1 className="text-2xl font-bold">
-            <Link to="/">Mini E-commerce</Link>
+            <Link to="/">MyStore</Link>
           </h1>
           <ul className="flex space-x-6 items-center">
             <li>
@@ -39,7 +36,7 @@ function Layout() {
       </nav>
 
       {/* Content */}
-      <main className="flex-1 container mx-auto p-6">
+      <main className="flex-1 container mx-auto p-6 mt-20"> {/* ✅ mt-20 ให้เนื้อหาไม่ซ่อนหลัง Navbar */}
         <Outlet />
       </main>
 
