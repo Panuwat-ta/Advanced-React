@@ -1,22 +1,9 @@
-import React from 'react'; // TODO 6: import `memo`
-import { useDispatch } from 'react-redux';
-import { addItem } from '../features/cart/cartSlice';
+import React, { memo } from 'react';
+import { Link } from 'react-router-dom';
 
-// TODO 5: ใช้ React.memo
-function ProductCard({ product }) {
-  const dispatch = useDispatch();
-
-  // TODO 7: ใช้ useCallback ใน Component แม่
-  const handleAddToCart = () => {
-    dispatch(addItem({
-        id: product.id,
-        title: product.title,
-        price: product.price,
-        image: product.image,
-    }));
-  };
-
-  return ( <div className="border p-4 rounded shadow hover:shadow-lg transition flex flex-col">
+function ProductCard({ product, onAddToCart }) {
+  return (
+    <div className="border p-4 rounded shadow hover:shadow-lg transition flex flex-col">
       <Link to={`/products/${product.id}`} className="flex-1">
         <img
           src={product.image}
@@ -27,7 +14,7 @@ function ProductCard({ product }) {
         <p className="text-green-600 font-bold">${product.price}</p>
       </Link>
       <button
-        onClick={handleAddToCart}
+        onClick={() => onAddToCart(product)}
         className="mt-2 bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-600"
       >
         Add to Cart
@@ -36,4 +23,5 @@ function ProductCard({ product }) {
   );
 }
 
-export default ProductCard;
+// ✅ TODO 5: ใช้ React.memo กับ ProductCard
+export default memo(ProductCard);
