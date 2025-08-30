@@ -12,13 +12,13 @@ function App() {
         <Route index element={<HomePage />} />
         <Route path="products" element={<ProductListPage />} />
         
-        {/* ✅ Dynamic Route สำหรับหน้ารายละเอียดสินค้า */}
-        <Route path="products/:productId" element={<ProductDetailPage />} />
+        {/* TODO 1: สร้าง Dynamic Route สำหรับหน้ารายละเอียดสินค้า */}
+         <Route path="products/:productId" element={<ProductDetailPage />} />
+        {/* Path ควรเป็น /products/:productId */}
         
         <Route path="cart" element={<CartPage />} />
       </Route>
     </Routes>
   );
 }
-
 export default App;
