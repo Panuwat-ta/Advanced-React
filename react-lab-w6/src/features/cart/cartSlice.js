@@ -16,9 +16,21 @@ const cartSlice = createSlice({
       } else {
         existingItem.quantity++;
       }
-    },
-    // BUG: reducer สำหรับ removeItem ยังไม่ได้ถูกสร้างขึ้น
+    },// แก้ bug : เพิ่ม reducer removeItem
+    removeItem(state, action) {
+      const id = action.payload.id;
+      const existingItem = state.items.find(item => item.id === id);
+      if (!existingItem) return;
+
+      state.totalQuantity--;
+      if (existingItem.quantity === 1) {
+        state.items = state.items.filter(item => item.id !== id);
+      } else {
+        existingItem.quantity--;
+      }
+    }
   }
 });
-export const { addItem } = cartSlice.actions;
+
+export const { addItem, removeItem } = cartSlice.actions;
 export default cartSlice.reducer;

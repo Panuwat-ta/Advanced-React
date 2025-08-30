@@ -1,15 +1,15 @@
 // src/components/ShoppingCart.jsx
 import { useSelector, useDispatch } from 'react-redux';
-import { addItem } from '../features/cart/cartSlice';
+import { addItem, removeItem } from '../features/cart/cartSlice';
 
 export function ShoppingCart() {
   const { items, totalQuantity } = useSelector(state => state.cart);
   const dispatch = useDispatch();
   const handleAddItem = () => dispatch(addItem({ id: 'p1', name: 'Laptop' }));
   const handleRemoveItem = () => {
-    // ฟังก์ชันนี้ยังทำงานไม่ได้เพราะ action ยังไม่มี
-    // dispatch(removeItem({ id: 'p1' })); 
-    alert('Funtion not implemented yet!');
+    // เปิดใช้งาน dispatch removeItem
+    dispatch(removeItem({ id: 'p1' })); 
+    //alert('Funtion not implemented yet!');
   };
 
   return (
