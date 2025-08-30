@@ -11,12 +11,14 @@ function App() {
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
         <Route path="products" element={<ProductListPage />} />
-        {/* TODO 1: สร้าง Dynamic Route สำหรับหน้ารายละเอียดสินค้า */}
-        {/* Path ควรเป็น /products/:productId */}
+        
+        {/* ✅ Dynamic Route สำหรับหน้ารายละเอียดสินค้า */}
+        <Route path="products/:productId" element={<ProductDetailPage />} />
         
         <Route path="cart" element={<CartPage />} />
       </Route>
     </Routes>
   );
 }
+
 export default App;
