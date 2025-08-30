@@ -2,21 +2,21 @@
 import React, { useState, useCallback } from 'react';
 
 // Component ลูกที่รับ props เป็นฟังก์ชัน
-const HeavyCalculationComponent = ({ onCalculate }) => {
+const HeavyCalculationComponent = React.memo(({ onCalculate }) => {
   console.log('HeavyCalculationComponent is rendering!');
   return <button className="bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-600" onClick={onCalculate}>Perform Heavy Calculation</button>;
-};
+});
 
-// BUG: HeavyCalculationComponent ถูก re-render ทุกครั้งที่ parent state เปลี่ยน
+// แก้ bug : ใช้ React.memo เพื่อป้องกันการ re-render
 // แม้ว่า props ของมันจะไม่ได้เปลี่ยนเลย
 
 function ParentComponent() {
   const [count, setCount] = useState(0);
 
-  const performCalculation = () => {
+  const performCalculation = useCallback(() => {
     // สมมติว่านี่คือการคำนวณที่หนักมาก
     console.log("Performing calculation...");
-  };
+  }, []);
 
   return (
     <div>
