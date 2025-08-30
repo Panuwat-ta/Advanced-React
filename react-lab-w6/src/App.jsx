@@ -1,11 +1,11 @@
 // src/App.jsx
 import { Routes, Route, NavLink } from 'react-router-dom';
-//import { AuthProvider } from './contexts/AuthContext';
+import { AuthProvider } from './contexts/AuthContext';
 
 // Import หน้าและ Component ของโจทย์แต่ละข้อ
-//import { NameSaver } from './components/NameSaver';
-//import { LoginComponent } from './components/LoginComponent';
-//import { ShoppingCart } from './components/ShoppingCart';
+import { NameSaver } from './components/NameSaver';
+import { LoginComponent } from './components/LoginComponent';
+import { ShoppingCart } from './components/ShoppingCart';
 //import { ProductListPage } from './pages/ProductListPage';
 //import { ProductDetailPage } from './pages/ProductDetailPage';
 //import ParentComponent from './components/ParentComponent';
