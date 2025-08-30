@@ -8,8 +8,8 @@ export function AuthProvider({ children }) {
   const login = (username) => setUser({ name: username });
   const logout = () => setUser(null);
 
-  // BUG: value ที่ส่งลงไปใน Provider ขาดฟังก์ชันที่จำเป็น
-  const value = { user };
+  // แก้ bug : ให้ส่งค่า login and logout ไปที่ Provider 
+const value = { user, login, logout };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
