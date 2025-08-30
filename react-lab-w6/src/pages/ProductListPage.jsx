@@ -9,9 +9,9 @@ export function ProductListPage() {
       <p>Select a product:</p>
       <ul className="list-disc pl-5 mt-2 space-y-2">
         {products.map(p => (
-          // BUG: Link ที่สร้างขึ้นมี path ไม่ถูกต้อง
+          // แก้ bug : เปลี่ยนชื่อ path จาก /product เป็น /products
           <li key={p.id} className="text-blue-600 hover:underline">
-            <Link to={`/product/${p.id}`}>{p.name}</Link>
+            <Link to={`/products/${p.id}`}>{p.name}</Link>
           </li>
         ))}
       </ul>
