@@ -8,9 +8,12 @@ export function useLocalStorage(key, initialValue) {
   });
 
   useEffect(() => {
-    // BUG: โค้ดส่วนนี้ทำงานไม่ถูกต้องเมื่อ value เป็น undefined
+    // แก้ bug: ตรวจสอบ value ก่อนเก็บลง localStorage
+    if (value !== undefined){
     localStorage.setItem(key, JSON.stringify(value));
-  }, [key, value]);
+  }else
+    localStorage.removeItem(key)
+}, [key, value]);
 
   return [value, setValue];
 }
