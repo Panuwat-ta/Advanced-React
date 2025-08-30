@@ -15,7 +15,7 @@ function Layout() {
       <nav className="bg-indigo-600 text-white p-4 shadow">
         <div className="container mx-auto flex justify-between items-center">
           <h1 className="text-2xl font-bold">
-            <Link to="/">MyStore</Link>
+            <Link to="/">Mini E-commerce</Link>
           </h1>
           <ul className="flex space-x-6 items-center">
             <li>
