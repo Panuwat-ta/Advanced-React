@@ -1,7 +1,14 @@
 import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 function Layout() {
+  // ดึงรายการสินค้าใน cart จาก Redux
+  const cartItems = useSelector((state) => state.cart.items);
+
+  // รวมจำนวนสินค้า
+  const totalQuantity = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+
   return (
     <div className="min-h-screen flex flex-col">
       {/* Navbar */}
@@ -10,15 +17,22 @@ function Layout() {
           <h1 className="text-2xl font-bold">
             <Link to="/">MyStore</Link>
           </h1>
-          <ul className="flex space-x-6">
+          <ul className="flex space-x-6 items-center">
             <li>
               <Link to="/" className="hover:underline">Home</Link>
             </li>
             <li>
               <Link to="/products" className="hover:underline">Products</Link>
             </li>
-            <li>
-              <Link to="/cart" className="hover:underline">Cart</Link>
+            <li className="relative">
+              <Link to="/cart" className="hover:underline flex items-center">
+                Cart
+                {totalQuantity > 0 && (
+                  <span className="ml-2 bg-red-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">
+                    {totalQuantity}
+                  </span>
+                )}
+              </Link>
             </li>
           </ul>
         </div>
