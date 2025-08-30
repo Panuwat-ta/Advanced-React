@@ -6,9 +6,9 @@ import { AuthProvider } from './contexts/AuthContext';
 import { NameSaver } from './components/NameSaver';
 import { LoginComponent } from './components/LoginComponent';
 import { ShoppingCart } from './components/ShoppingCart';
-//import { ProductListPage } from './pages/ProductListPage';
-//import { ProductDetailPage } from './pages/ProductDetailPage';
-//import ParentComponent from './components/ParentComponent';
+import { ProductListPage } from './pages/ProductListPage';
+import { ProductDetailPage } from './pages/ProductDetailPage';
+import ParentComponent from './components/ParentComponent';
 
 function App() {
   const activeLinkStyle = {
