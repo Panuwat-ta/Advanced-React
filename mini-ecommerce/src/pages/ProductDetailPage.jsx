@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { addItem } from '../features/cart/cartSlice';
 
 function ProductDetailPage() {
   const { productId } = useParams(); // ดึง productId จาก URL
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -24,6 +28,17 @@ function ProductDetailPage() {
 
     fetchProduct();
   }, [productId]);
+
+  const handleAddToCart = () => {
+    if (product) {
+      dispatch(addItem({
+        id: product.id,
+        title: product.title,
+        price: product.price,
+        image: product.image,
+      }));
+    }
+  };
 
   if (loading) return <p className="text-center">Loading...</p>;
   if (error) return <p className="text-center text-red-500">{error}</p>;
@@ -45,7 +60,10 @@ function ProductDetailPage() {
         <p className="mb-6">{product.description}</p>
 
         {/* ปุ่ม Add to Cart */}
-        <button className="bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-600 w-40">
+        <button
+          onClick={handleAddToCart}
+          className="bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-600 w-40"
+        >
           Add to Cart
         </button>
       </div>
